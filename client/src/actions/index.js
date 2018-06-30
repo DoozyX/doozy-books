@@ -163,7 +163,7 @@ export function getUsers() {
 
 
 export function userRegister(user, userList) {
-	const request = axios.post(`/api/register`, user)
+	const request = axios.post(`/api/register`, user);
 
 	return (dispatch) => {
 		request.then(({data}) => {

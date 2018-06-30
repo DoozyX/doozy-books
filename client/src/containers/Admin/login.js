@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions'
+import { loginUser, userRegister } from '../../actions'
 
 
 class Login extends Component {
-
 	state = {
 		email: '',
 		password: '',
@@ -25,17 +24,26 @@ class Login extends Component {
 		}
 	}
 
-
-	submitForm = (e) => {
-		e.preventDefault();
-		this.props.dispatch(loginUser(this.state))
+	submitForm = (event, isLogin) => {
+		event.preventDefault();
+		if (isLogin !== null) {
+			if (isLogin) {
+				this.props.dispatch(loginUser(this.state))
+			} else {
+				this.props.dispatch(userRegister({
+					email: this.state.email,
+					password: this.state.password
+				}, []));
+				this.props.history.push('/')
+			}
+		}
 	};
 
 	render() {
 		let user = this.props.user;
 		return (
 			<div className="rl_container">
-				<form onSubmit={this.submitForm}>
+				<form onSubmit={(event) => this.submitForm(event, null)}>
 					<h2>Log in here</h2>
 
 					<div className="form_element">
@@ -56,9 +64,9 @@ class Login extends Component {
 						/>
 					</div>
 
-					<button type="submit">Log in</button>
+					<button onClick={(event) => this.submitForm(event, false)}>Register now</button>
 					<br/>
-					<button type="submit">Register</button>
+					<button onClick={(event) => this.submitForm(event, true)}>Log in</button>
 
 					<div className="error">
 						{
@@ -67,18 +75,23 @@ class Login extends Component {
 								: null
 						}
 					</div>
-
 				</form>
 			</div>
 		);
 	}
 }
 
-function mapStateToProps(state) {
+function
+
+mapStateToProps(state) {
 	return {
 		user: state.user
 	}
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)
+
+(
+	Login
+)
 
