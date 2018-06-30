@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Link } from 'react-router-dom'
-import Navigation from "./Sidenav/navigation";
-
+import { Link } from 'react-router-dom';
+import Nav from './Sidenav/sidenav';
 
 class Header extends Component {
+
 	state = {
-		showNav: false,
+		showNav: false
 	};
 
-	toggleNav = () => {
-		this.setState({
-			showNav: !this.state.showNav,
-		});
+	onHideNav = () => {
+		this.setState({showNav: false})
 	};
+
 
 	render() {
 		return (
 			<header>
-				<div className={'open_nav'}>
-					<FontAwesome
-						name={'bars'}
-						style={{
-							color: '#ffffff',
-							padding: '10px',
-							cursor: 'pointer'
-						}}
-						onClick={this.toggleNav}
+				<div className="open_nav">
+					<FontAwesome name="bars"
+					             onClick={() => this.setState({showNav: true})}
+					             style={{
+						             color: '#ffffff',
+						             padding: '10px',
+						             cursor: 'pointer'
+					             }}
 					/>
 				</div>
-
-				<Navigation
+				<Nav
 					showNav={this.state.showNav}
-					onToggleNav={this.toggleNav}
+					onHideNav={() => this.onHideNav()}
 				/>
 
-				<Link
-					to={'/'}
-					className={'logo'}
-				>
-					Doozy Books Review
+				<Link to="/" className="logo">
+					Doozy Book Reviews
 				</Link>
 
 			</header>

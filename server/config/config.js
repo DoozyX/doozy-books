@@ -1,14 +1,15 @@
 const config = {
 	production: {
 		SECRET: process.env.SECRET,
-		DATABASE: process.env.MONGODB_URI,
+		DATABASE: 'mongodb+srv://doozy:doozy@cluster0-mcisa.mongodb.net/test?retryWrites=true',
 		PORT: process.env.PORT
 	},
 	default: {
-		SECRET: '43?*h74b_!2<;mU~;De+jc%c2xmc`#${',
-		DATABASE: 'mongodb://localhost/doozyBooks',
-		PORT: 3001
-	}
+		SECRET: 'SUPERSECRETPASSWORD123',
+		//DATABASE: 'mongodb://localhost:27017/doozyBooks'
+		DATABASE: 'mongodb+srv://doozy:doozy@cluster0-mcisa.mongodb.net/test?retryWrites=true',
+		PORT: 3001	
+}
 };
 
 exports.get = function get(env) {

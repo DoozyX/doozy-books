@@ -6,8 +6,8 @@ import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 
-import Routes from "./routes";
-import reducers from './reducers'
+import reducers from './reducers';
+import Routes from './routes';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 
